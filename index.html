@@ -446,7 +446,7 @@
       </div>
       <div class="info-item">
         <div class="info-icon">✉️</div>
-        <span>info@nexova.it</span>
+        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d64636b624d636875627b6c236479">[email&#160;protected]</a></span>
       </div>
       <div class="info-item">
         <div class="info-icon">📞</div>
@@ -457,24 +457,24 @@
         <span>Lun – Ven: 9:00 – 18:30</span>
       </div>
     </div>
-    <form id="contactForm" onsubmit="handleSubmit(event)">
+    <form id="contactForm" action="https://formspree.io/f/mjgpbdvl" method="POST">
       <div class="form-row">
         <div>
           <label for="name">Nome</label>
-          <input type="text" id="name" placeholder="Mario Rossi" required />
+          <input type="text" id="name" name="name" placeholder="Mario Rossi" required />
         </div>
         <div>
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="mario@azienda.it" required />
+          <input type="email" id="email" name="email" placeholder="mario@azienda.it" required />
         </div>
       </div>
       <div>
         <label for="company">Azienda</label>
-        <input type="text" id="company" placeholder="Nome dell'azienda" />
+        <input type="text" id="company" name="company" placeholder="Nome dell'azienda" />
       </div>
       <div>
         <label for="service">Servizio di Interesse</label>
-        <select id="service">
+        <select id="service" name="service">
           <option value="">Seleziona un servizio...</option>
           <option>Consulenza Strategica</option>
           <option>Sviluppo Tecnologico</option>
@@ -486,12 +486,9 @@
       </div>
       <div>
         <label for="message">Messaggio</label>
-        <textarea id="message" placeholder="Raccontaci il tuo progetto..."></textarea>
+        <textarea id="message" name="message" placeholder="Raccontaci il tuo progetto..."></textarea>
       </div>
       <button type="submit" class="form-submit">Invia Messaggio →</button>
-      <div id="successMsg" style="display:none; color:var(--accent); font-size:.88rem; margin-top:.5rem;">
-        ✓ Messaggio inviato! Ti contatteremo presto.
-      </div>
     </form>
   </div>
 </section>
@@ -507,7 +504,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -517,13 +514,3 @@
   }, { threshold: 0.12 });
   reveals.forEach(r => observer.observe(r));
 
-  // Form submit
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('successMsg').style.display = 'block';
-    e.target.reset();
-    setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
-  }
-</script>
-</body>
-</html>
