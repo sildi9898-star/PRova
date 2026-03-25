@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexova — Il Futuro del Tuo Business</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:   #0b1120;
+      --deep:   #111827;
+      --accent: #c9a84c;
+      --gold2:  #e8c97a;
+      --light:  #f5f0e8;
+      --muted:  #9ca3af;
+      --white:  #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--light);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 6%;
+      background: rgba(11,17,32,0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      animation: fadeDown .8s ease both;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 700;
+      letter-spacing: .05em; color: var(--white);
+    }
+    .logo span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 2.4rem; }
+    nav ul a {
+      text-decoration: none; font-size: .85rem; font-weight: 400;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); transition: color .25s;
+    }
+    nav ul a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: var(--navy) !important;
+      padding: .45rem 1.2rem; border-radius: 2px; font-weight: 500 !important;
+      transition: background .25s !important;
+    }
+    .nav-cta:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      text-align: center;
+      padding: 10rem 6% 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 15% 80%, rgba(201,168,76,.06) 0%, transparent 60%);
+    }
+    .grid-lines {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid rgba(201,168,76,.35);
+      padding: .35rem 1rem; border-radius: 2px; margin-bottom: 2rem;
+      animation: fadeUp .8s .2s ease both;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--white); margin-bottom: 1.6rem;
+      animation: fadeUp .8s .35s ease both;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.75;
+      max-width: 560px; margin: 0 auto 2.8rem;
+      animation: fadeUp .8s .5s ease both;
+    }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .8s .65s ease both; }
+    .btn-primary {
+      background: var(--accent); color: var(--navy);
+      padding: .85rem 2.2rem; font-size: .9rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      border: none; border-radius: 2px; cursor: pointer;
+      text-decoration: none; transition: background .25s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--light);
+      padding: .85rem 2.2rem; font-size: .9rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      border: 1px solid rgba(245,240,232,.25); border-radius: 2px; cursor: pointer;
+      text-decoration: none; transition: border-color .25s, transform .2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .stats {
+      margin-top: 5rem; display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp .8s .8s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 600; color: var(--white);
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 6%; }
+    .section-label {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); display: block; margin-bottom: .8rem;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;
+      color: var(--white); line-height: 1.2;
+    }
+    .divider {
+      width: 48px; height: 2px; background: var(--accent);
+      margin: 1.4rem 0 1.8rem;
+    }
+    p.body { color: var(--muted); line-height: 1.8; max-width: 520px; }
+
+    /* ── FEATURES ── */
+    #features { background: var(--deep); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px; margin-top: 4rem;
+    }
+    .feature-card {
+      background: var(--navy); padding: 2.5rem 2rem;
+      border: 1px solid rgba(201,168,76,.1);
+      transition: border-color .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 0; background: var(--accent);
+      transition: height .4s ease;
+    }
+    .feature-card:hover::before { height: 100%; }
+    .feature-card:hover { border-color: rgba(201,168,76,.3); transform: translateY(-4px); }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: rgba(201,168,76,.1); border-radius: 4px;
+      display: grid; place-items: center;
+      font-size: 1.4rem; margin-bottom: 1.4rem;
+    }
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600;
+      color: var(--white); margin-bottom: .7rem;
+    }
+    .feature-card p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--navy); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 4rem;
+    }
+    .testi-card {
+      background: var(--deep); padding: 2.2rem;
+      border: 1px solid rgba(201,168,76,.1);
+      border-radius: 2px;
+      transition: border-color .3s;
+    }
+    .testi-card:hover { border-color: rgba(201,168,76,.3); }
+    .stars { color: var(--accent); font-size: 1rem; letter-spacing: .1em; margin-bottom: 1rem; }
+    .testi-text { font-size: .9rem; color: var(--light); line-height: 1.8; font-style: italic; margin-bottom: 1.4rem; }
+    .testi-author { display: flex; align-items: center; gap: .9rem; }
+    .avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--deep));
+      display: grid; place-items: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+      color: var(--navy); font-weight: 700; flex-shrink: 0;
+    }
+    .author-info strong { display: block; font-size: .85rem; color: var(--white); font-weight: 500; }
+    .author-info span { font-size: .75rem; color: var(--muted); }
+
+    /* ── CTA ── */
+    #cta {
+      background: linear-gradient(135deg, rgba(201,168,76,.12) 0%, transparent 60%);
+      border-top: 1px solid rgba(201,168,76,.15);
+      border-bottom: 1px solid rgba(201,168,76,.15);
+      text-align: center;
+    }
+    #cta h2 { margin: 0 auto 1rem; max-width: 600px; }
+    #cta p { color: var(--muted); margin: 0 auto 2.5rem; max-width: 480px; line-height: 1.8; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--deep); }
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: start; margin-top: 3rem;
+    }
+    .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+    .info-item { display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start; }
+    .info-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(201,168,76,.1); border-radius: 4px;
+      display: grid; place-items: center; font-size: .9rem;
+    }
+    .info-item span { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+    form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .4rem; }
+    input, textarea, select {
+      width: 100%; background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.15);
+      color: var(--light); font-family: 'DM Sans', sans-serif;
+      font-size: .88rem; padding: .75rem 1rem; border-radius: 2px;
+      outline: none; transition: border-color .25s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+    textarea { resize: vertical; min-height: 120px; }
+    select option { background: var(--deep); }
+    .form-submit {
+      background: var(--accent); color: var(--navy);
+      padding: .9rem 2.4rem; font-size: .88rem; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      border: none; border-radius: 2px; cursor: pointer;
+      transition: background .25s, transform .2s; align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); padding: 3rem 6%;
+      border-top: 1px solid rgba(201,168,76,.1);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer .logo { font-size: 1.3rem; }
+    footer p { font-size: .8rem; color: var(--muted); }
+    .footer-links { display: flex; gap: 1.8rem; }
+    .footer-links a { font-size: .78rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:none; } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(24px);  } to { opacity:1; transform:none; } }
+
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .stats { gap: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Nex<span>ova</span></div>
+  <ul>
+    <li><a href="#features">Servizi</a></li>
+    <li><a href="#testimonials">Clienti</a></li>
+    <li><a href="#contact">Contatti</a></li>
+    <li><a href="#contact" class="nav-cta">Inizia ora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Soluzioni Enterprise — Dal 2018</span>
+    <h1>Porta il tuo Business<br>al <em>Livello Successivo</em></h1>
+    <p class="hero-sub">Nexova affianca aziende ambiziose con consulenza strategica, tecnologia su misura e un approccio orientato ai risultati concreti.</p>
+    <div class="btn-group">
+      <a href="#contact" class="btn-primary">Richiedi una Demo</a>
+      <a href="#features" class="btn-outline">Scopri i Servizi</a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">320<span>+</span></div>
+        <div class="stat-label">Clienti Attivi</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-label">Soddisfazione</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">14<span>M€</span></div>
+        <div class="stat-label">Fatturato Generato</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6<span></span></div>
+        <div class="stat-label">Anni di Esperienza</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="reveal">
+    <span class="section-label">Cosa Offriamo</span>
+    <h2>Servizi progettati per<br>crescere con te</h2>
+    <div class="divider"></div>
+    <p class="body">Ogni soluzione è costruita su misura. Non crediamo nei pacchetti preconfezionati — crediamo nei risultati misurabili.</p>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Consulenza Strategica</h3>
+      <p>Analizziamo il tuo mercato e definiamo una roadmap chiara per raggiungere gli obiettivi di business nel minor tempo possibile.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚙️</div>
+      <h3>Sviluppo Tecnologico</h3>
+      <p>Piattaforme digitali, automazioni e software personalizzati che si integrano perfettamente nei tuoi flussi operativi.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>Growth & Marketing</h3>
+      <p>Strategie data-driven per acquisire nuovi clienti, aumentare la retention e massimizzare il valore del tuo brand sul mercato.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>Sicurezza & Compliance</h3>
+      <p>Protezione dei dati, audit di conformità e implementazione di policy aziendali in linea con le normative europee più recenti.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌐</div>
+      <h3>Espansione Internazionale</h3>
+      <p>Ti accompagniamo nell'apertura di nuovi mercati esteri con analisi localizzate, partner network e supporto operativo dedicato.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <h3>Supporto Continuo</h3>
+      <p>Un team dedicato disponibile 24/7. Non ti lasciamo soli dopo il lancio — cresciamo insieme nel tempo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="reveal" style="text-align:center; max-width:600px; margin: 0 auto;">
+    <span class="section-label">Cosa Dicono di Noi</span>
+    <h2>Clienti che hanno scelto<br>di crescere con Nexova</h2>
+    <div class="divider" style="margin: 1.4rem auto 1.8rem;"></div>
+  </div>
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Nexova ha trasformato il nostro processo commerciale in meno di sei mesi. I risultati hanno superato ogni aspettativa — fatturato +40% YoY."</p>
+      <div class="testi-author">
+        <div class="avatar">MR</div>
+        <div class="author-info">
+          <strong>Marco Rossi</strong>
+          <span>CEO, Alphares S.r.l.</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Finalmente una consulenza che parla il linguaggio dei numeri. Il team è preparato, reattivo e sempre orientato al risultato. Consigliato senza riserve."</p>
+      <div class="testi-author">
+        <div class="avatar">LF</div>
+        <div class="author-info">
+          <strong>Laura Ferretti</strong>
+          <span>COO, Meridian Group</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Abbiamo affidato a Nexova la nostra espansione in Germania e Francia. Professionalità eccezionale, roadmap precisa e zero sorprese. Da rifare."</p>
+      <div class="testi-author">
+        <div class="avatar">GB</div>
+        <div class="author-info">
+          <strong>Giulia Bianchi</strong>
+          <span>Founder, NordLux Italia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="reveal">
+    <span class="section-label">Pronto a Iniziare?</span>
+    <h2>Il tuo prossimo salto di qualità<br>inizia da una conversazione</h2>
+    <p>Prenota una sessione gratuita di 30 minuti con un nostro consulente senior. Nessun impegno, solo valore concreto.</p>
+    <a href="#contact" class="btn-primary">Prenota la tua Sessione Gratuita</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <span class="section-label">Contattaci</span>
+    <h2>Parliamo del tuo progetto</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-wrap reveal">
+    <div class="contact-info">
+      <p>Siamo a tua disposizione per rispondere a qualsiasi domanda. Compilа il form oppure contattaci direttamente — ti risponderemo entro 24 ore.</p>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <span>Via della Repubblica 42<br>20121 Milano, Italia</span>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">✉️</div>
+        <span>info@nexova.it</span>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <span>+39 02 1234 5678</span>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <span>Lun – Ven: 9:00 – 18:30</span>
+      </div>
+    </div>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div>
+          <label for="name">Nome</label>
+          <input type="text" id="name" placeholder="Mario Rossi" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="mario@azienda.it" required />
+        </div>
+      </div>
+      <div>
+        <label for="company">Azienda</label>
+        <input type="text" id="company" placeholder="Nome dell'azienda" />
+      </div>
+      <div>
+        <label for="service">Servizio di Interesse</label>
+        <select id="service">
+          <option value="">Seleziona un servizio...</option>
+          <option>Consulenza Strategica</option>
+          <option>Sviluppo Tecnologico</option>
+          <option>Growth & Marketing</option>
+          <option>Sicurezza & Compliance</option>
+          <option>Espansione Internazionale</option>
+          <option>Altro</option>
+        </select>
+      </div>
+      <div>
+        <label for="message">Messaggio</label>
+        <textarea id="message" placeholder="Raccontaci il tuo progetto..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Invia Messaggio →</button>
+      <div id="successMsg" style="display:none; color:var(--accent); font-size:.88rem; margin-top:.5rem;">
+        ✓ Messaggio inviato! Ti contatteremo presto.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Nex<span>ova</span></div>
+  <p>© 2026 Nexova S.r.l. — P.IVA 12345678901</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Cookie</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('successMsg').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
+  }
+</script>
+</body>
+</html>
